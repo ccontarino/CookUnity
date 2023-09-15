@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './ProductCard.scss';
 interface Image {
   alt: string;
