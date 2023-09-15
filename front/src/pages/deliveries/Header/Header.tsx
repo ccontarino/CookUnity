@@ -8,6 +8,8 @@ import {
 import './Header.scss';
 import { useQuery } from '@apollo/client';
 import { IS_HOLIDAY } from '../../../services/holidayQuery';
+import { useAtom } from 'jotai';
+import { dateSelected } from '../../../store/store';
 
 interface TabProps {
   index: number;
@@ -17,7 +19,9 @@ export const Header = () => {
   const [activeTab, setActiveTab] = useState(0);
   const onTabClick = (index: number) => {
     setActiveTab(index);
+    setDateSelected(holidayList.fetchHolidayList[index]);
   };
+  const [dateSelectedState, setDateSelected] = useAtom(dateSelected);
   const TabComponent = ({ date, index }: TabProps) => (
     <button
       onClick={() => onTabClick(index)}
@@ -44,7 +48,7 @@ export const Header = () => {
   const { data: holidayList }: any = useQuery(IS_HOLIDAY, {
     variables: { dateList: datesQuery },
   });
-  console.log('', holidayList);
+
   return (
     <header className="header-container">
       <div className="page__horizontal-space header">
@@ -59,7 +63,7 @@ export const Header = () => {
           className="btn-primary btn-buy"
           data-test-id="header-cta"
           onClick={() => alert('Confirmed')}>
-          Confirm
+          {dateSelectedState.isHoliday ? 'Reschedule' : 'Confirm'}
         </button>
       </div>
     </header>

@@ -14,9 +14,14 @@ type Delivery {
   products: [Product]!
 }
 
+type HolidayListResponse {
+  date: String!
+  isHoliday: Boolean!
+}
+
 type Query {
   fetchDeliveries: [Delivery]
-  fetchHolidayList(dateList: [String]!): [String]
+  fetchHolidayList(dateList: [String]!): [HolidayListResponse]!
 
 }
 
