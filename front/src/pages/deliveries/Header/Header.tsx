@@ -10,6 +10,7 @@ import { useQuery } from '@apollo/client';
 import { IS_HOLIDAY } from '../../../services/holidayQuery';
 import { useAtom } from 'jotai';
 import { dateSelected } from '../../../store/store';
+import { GET_DELIVERIES } from '../../../services/deliveryQuery';
 
 interface TabProps {
   index: number;
@@ -47,6 +48,9 @@ export const Header = () => {
 
   const { data: holidayList }: any = useQuery(IS_HOLIDAY, {
     variables: { dateList: datesQuery },
+  });
+  const { data: deliveryList }: any = useQuery(GET_DELIVERIES, {
+    variables: { dateParam: getDateISOString(dateNow) },
   });
 
   return (
