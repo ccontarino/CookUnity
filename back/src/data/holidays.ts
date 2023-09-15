@@ -1,7 +1,10 @@
 const now = new Date();
 
-// this is a simulation holiday service
+// convert tomorrow's date to ISO string and split it at the 'T' to get the date
+const tomorrow = new Date(now.setDate(now.getDate() + 1))
+  .toISOString()
+  .split('T')[0];
+
 export const holidayList = {
-  [now.setDate(now.getDate() + 1)]: true,
-  [now.setDate(now.getDate() + 4)]: true,
+  [tomorrow]: true,
 };

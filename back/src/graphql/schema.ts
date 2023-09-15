@@ -7,12 +7,17 @@ type Product{
   price: Float!
   description: String
 }
+
 type Delivery {
   id: ID!
   deliveryDate: String!
-  productType: Product!
+  products: [Product]!
 }
+
 type Query {
-  fetchDeliveries: Product
+  fetchDeliveries: [Delivery]
+  fetchHolidayList(dateList: [String]!): [String]
+
 }
+
 `);

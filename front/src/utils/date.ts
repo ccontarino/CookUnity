@@ -26,3 +26,6 @@ export const monthList = [
 export const setDateForward = (day: number) => {
   return new Date(new Date().setDate(new Date().getDate() + day));
 };
+
+export const getDateISOString = (date: Date) =>
+  date.toISOString().split('T')[0];
