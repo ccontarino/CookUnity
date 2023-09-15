@@ -24,7 +24,6 @@ export const Main: FC = () => {
         alt: 'Product 2',
       },
     },
- 
   ];
 
   return (

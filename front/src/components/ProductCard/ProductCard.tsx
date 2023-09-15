@@ -15,14 +15,8 @@ function ProductCard({ title, description, price, img }: ProductCard) {
     <div className="product-card" data-test-id="product-card">
       <div className="card-product-information">
         <h2>{title}</h2>
-        <p>{description}</p>
+        <p className="description-text">{description}</p>
         <p>${price}</p>
-        <div
-          style={{
-            display: 'flex',
-            flex: 1,
-            justifyItems: 'center',
-          }}></div>
         <div className="image-container">
           <img className="image" src={img.uri} alt={img.alt} />
         </div>
