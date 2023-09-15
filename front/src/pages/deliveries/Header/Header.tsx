@@ -4,8 +4,8 @@ interface HeaderProps {
   dates: string[];
 }
 interface TabProps {
-  date: string;
   index: number;
+  date: string;
 }
 export const Header = ({
   dates = ['Monday, August 23', 'Monday, August 24', 'Monday, August 25'],
@@ -15,7 +15,6 @@ export const Header = ({
       <span className="date">{date}</span>
     </button>
   );
-
   return (
     <header className="header-container">
       <div className="page__horizontal-space header">
@@ -24,12 +23,6 @@ export const Header = ({
             {dates.map((date: string, index: number) => (
               <TabComponent date={date} index={index} key={index} />
             ))}
-            {/* <button className="tab active">
-              <span className="date">Monday, August 23</span>
-            </button>
-            <button className="tab active">
-              <span className="date">Monday, August 23</span>
-            </button> */}
           </div>
         </div>
         <button
