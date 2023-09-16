@@ -2,9 +2,10 @@ import { deliveries } from '../data/deliverIes';
 import { holidayList } from '../data/holidays';
 import { HolidayListResponse } from '../types/holiday.types';
 
-export async function fetchDeliveries(dateParam: string): Promise<any[]> {
-  const date = new Date(dateParam);
-  return deliveries.filter((delivery) => delivery.date === date);
+export async function fetchDeliveries({ date }: any): Promise<any[]> {
+  return deliveries.filter((delivery) => {
+    return delivery.date === date;
+  });
 }
 export async function fetchHolidayList({
   dateList,

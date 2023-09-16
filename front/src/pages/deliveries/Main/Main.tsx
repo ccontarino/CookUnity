@@ -16,7 +16,7 @@ export const Main: FC = () => {
         ) : (
           <>
             {deliveriesList.map((delivery) =>
-              delivery?.products?.map((item, index) => (
+              delivery?.products?.map((item) => (
                 <ProductCard
                   description={item.details}
                   title={item.title}

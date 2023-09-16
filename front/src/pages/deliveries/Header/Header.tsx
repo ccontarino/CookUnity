@@ -7,14 +7,9 @@ import {
 } from '../../../utils/date';
 import './Header.scss';
 import { useQuery } from '@apollo/client';
-import {
-  GET_HOLIDAY_LIST,
-  IS_HOLIDAY,
-} from '../../../graphql/queries/holidayQuery';
+import { GET_HOLIDAY_LIST } from '../../../graphql/queries/holidayQuery';
 import { useAtom } from 'jotai';
 import { dateSelected } from '../../../store/store';
-import { GET_DELIVERIES } from '../../../graphql/queries/deliveryQuery';
-import useProductHook from '../../../hooks/useDeliveriesHook';
 
 interface TabProps {
   index: number;
