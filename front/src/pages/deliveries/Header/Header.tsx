@@ -1,42 +1,72 @@
+import { useState } from 'react';
+import {
+  dayList,
+  getDateISOString,
+  monthList,
+  setDateForward,
+} from '../../../utils/date';
 import './Header.scss';
+import { useQuery } from '@apollo/client';
+import { GET_HOLIDAY_LIST } from '../../../graphql/queries/holidayQuery';
+import { useAtom } from 'jotai';
+import { dateSelected } from '../../../store/store';
 
-interface HeaderProps {
-  dates: string[];
-}
 interface TabProps {
-  date: string;
   index: number;
+  date: Date;
 }
-export const Header = ({
-  dates = ['Monday, August 23', 'Monday, August 24', 'Monday, August 25'],
-}: HeaderProps) => {
+export const Header = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const onTabClick = (index: number) => {
+    setActiveTab(index);
+    setDateSelected(holidayList.fetchHolidayList[index]);
+  };
+  const [dateSelectedState, setDateSelected] = useAtom(dateSelected);
   const TabComponent = ({ date, index }: TabProps) => (
-    <button className={`tab ${index === 0 ? 'active' : ''}`}>
-      <span className="date">{date}</span>
+    <button
+      onClick={() => onTabClick(index)}
+      className={`tab ${index === activeTab ? 'active' : ''}`}>
+      <span className="date">
+        {dayList[date.getDay()] +
+          ', ' +
+          monthList[date.getMonth()] +
+          ' ' +
+          date.getDate()}
+      </span>
     </button>
   );
+  const dateNow = new Date();
+  const dateTomorrow = setDateForward(1);
+  const dateAfterTomorrow = setDateForward(2);
+  const dates = [dateNow, dateTomorrow, dateAfterTomorrow];
+
+  const datesQuery = [
+    getDateISOString(dateNow),
+    getDateISOString(dateTomorrow),
+    getDateISOString(dateAfterTomorrow),
+  ];
+
+  const { data: holidayList }: any = useQuery(GET_HOLIDAY_LIST, {
+    variables: { dateList: datesQuery },
+  });
 
   return (
     <header className="header-container">
       <div className="page__horizontal-space header">
         <div className="tabs-container">
           <div className="tabs">
-            {dates.map((date: string, index: number) => (
+            {dates.map((date: Date, index: number) => (
               <TabComponent date={date} index={index} key={index} />
             ))}
-            {/* <button className="tab active">
-              <span className="date">Monday, August 23</span>
-            </button>
-            <button className="tab active">
-              <span className="date">Monday, August 23</span>
-            </button> */}
           </div>
         </div>
         <button
           className="btn-primary btn-buy"
           data-test-id="header-cta"
-          onClick={() => alert('Confirmed')}>
-          Confirm
+          onClick={() =>
+            alert(dateSelectedState.isHoliday ? 'Rescheduled' : 'Confirmed')
+          }>
+          {dateSelectedState.isHoliday ? 'Reschedule' : 'Confirm'}
         </button>
       </div>
     </header>

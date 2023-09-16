@@ -1,19 +1,25 @@
-export async function fetchDeliveries(): Promise<any[]> {
-  const products = [
-    {
-      id: '1',
-      title: 'Product 1',
-      details: 'Details of Product 1',
-      price: 19.99,
-      description: 'Description of Product 1',
-    },
-    {
-      id: '2',
-      title: 'Product 2',
-      details: 'Details of Product 2',
-      price: 29.99,
-      description: 'Description of Product 2',
-    },
-  ];
-  return products;
+import { deliveries } from '../data/deliverIes';
+import { holidayList } from '../data/holidays';
+import {
+  DeliveriesResponse,
+  HolidayListResponse,
+} from '../types/holiday.types';
+
+export async function fetchDeliveries({
+  date,
+}: {
+  date: string;
+}): Promise<DeliveriesResponse[]> {
+  return deliveries.filter((delivery) => {
+    return delivery.date === date;
+  });
+}
+export async function fetchHolidayList({
+  dateList,
+}: {
+  dateList: String[];
+}): Promise<HolidayListResponse[]> {
+  return dateList.map((date: any) => {
+    return { date, isHoliday: holidayList[date] || false };
+  });
 }
