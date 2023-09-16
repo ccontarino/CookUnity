@@ -5,6 +5,7 @@ import './Main.scss';
 import Loader from '../../../components/Loader/Loader';
 
 import useDeliveriesHook from '../../../hooks/useDeliveriesHook';
+
 export const Main: FC = () => {
   const { data: deliveriesList, loading } = useDeliveriesHook();
   return (

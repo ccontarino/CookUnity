@@ -33,7 +33,7 @@ export const products = [
     details: 'Details of Product 4',
     image:
       'https://cookunity-media.imgix.net/media/catalog/product/cache/x1200/l/a/large-chicken_schnitzel_-_ratel.jpeg',
-    price: 29.99,
+    price: 19.99,
     description: 'Description of Product 4',
   },
   {
@@ -42,7 +42,7 @@ export const products = [
     details: 'Details of Product 5',
     image:
       'https://cookunity-media.imgix.net/media/catalog/product/cache/x1200/l/a/large-chicken_schnitzel_-_ratel.jpeg',
-    price: 29.99,
+    price: 49.99,
     description: 'Description of Product 5',
   },
 ];

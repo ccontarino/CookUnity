@@ -49,9 +49,6 @@ export const Header = () => {
   const { data: holidayList }: any = useQuery(GET_HOLIDAY_LIST, {
     variables: { dateList: datesQuery },
   });
-  // const { data: deliveryList }: any = useQuery(GET_DELIVERIES, {
-  //   variables: { dateParam: getDateISOString(dateNow) },
-  // });
 
   return (
     <header className="header-container">
@@ -66,7 +63,9 @@ export const Header = () => {
         <button
           className="btn-primary btn-buy"
           data-test-id="header-cta"
-          onClick={() => alert('Confirmed')}>
+          onClick={() =>
+            alert(dateSelectedState.isHoliday ? 'Rescheduled' : 'Confirmed')
+          }>
           {dateSelectedState.isHoliday ? 'Reschedule' : 'Confirm'}
         </button>
       </div>
