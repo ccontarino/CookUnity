@@ -14,6 +14,7 @@ import {
 import { useAtom } from 'jotai';
 import { dateSelected } from '../../../store/store';
 import { GET_DELIVERIES } from '../../../graphql/queries/deliveryQuery';
+import useProductHook from '../../../hooks/useDeliveriesHook';
 
 interface TabProps {
   index: number;
@@ -53,9 +54,9 @@ export const Header = () => {
   const { data: holidayList }: any = useQuery(GET_HOLIDAY_LIST, {
     variables: { dateList: datesQuery },
   });
-  const { data: deliveryList }: any = useQuery(GET_DELIVERIES, {
-    variables: { dateParam: getDateISOString(dateNow) },
-  });
+  // const { data: deliveryList }: any = useQuery(GET_DELIVERIES, {
+  //   variables: { dateParam: getDateISOString(dateNow) },
+  // });
 
   return (
     <header className="header-container">

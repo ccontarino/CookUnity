@@ -1,13 +1,10 @@
 import './ProductCard.scss';
-interface Image {
-  alt: string;
-  uri: string;
-}
+
 interface ProductCard {
   title: string;
   description: string;
   price: number;
-  img: Image;
+  img: string;
 }
 
 function ProductCard({ title, description, price, img }: ProductCard) {
@@ -18,7 +15,7 @@ function ProductCard({ title, description, price, img }: ProductCard) {
         <p className="description-text">{description}</p>
         <p>${price}</p>
         <div className="image-container">
-          <img className="image" src={img.uri} alt={img.alt} />
+          <img className="image" src={img} alt={title} />
         </div>
       </div>
     </div>
