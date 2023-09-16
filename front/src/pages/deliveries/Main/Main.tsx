@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { SubHeader } from './SubHeader/SubHeader';
 import ProductCard from '../../../components/ProductCard/ProductCard';
 import './Main.scss';
+import Loader from '../../../components/Loader/Loader';
 export const Main: FC = () => {
   const productList = [
     {
@@ -30,14 +31,15 @@ export const Main: FC = () => {
     <main className="page__main">
       <SubHeader />
       <div className="products-grid page__horizontal-space page__vertical-space">
-        {productList.map((item, index) => (
+        <Loader />
+        {/* {productList.map((item, index) => (
           <ProductCard
             description={item.description}
             title={item.title}
             price={item.price}
             img={item.img}
             key={index}></ProductCard>
-        ))}
+        ))} */}
       </div>
     </main>
   );

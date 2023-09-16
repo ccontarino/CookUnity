@@ -7,10 +7,13 @@ import {
 } from '../../../utils/date';
 import './Header.scss';
 import { useQuery } from '@apollo/client';
-import { IS_HOLIDAY } from '../../../services/holidayQuery';
+import {
+  GET_HOLIDAY_LIST,
+  IS_HOLIDAY,
+} from '../../../graphql/queries/holidayQuery';
 import { useAtom } from 'jotai';
 import { dateSelected } from '../../../store/store';
-import { GET_DELIVERIES } from '../../../services/deliveryQuery';
+import { GET_DELIVERIES } from '../../../graphql/queries/deliveryQuery';
 
 interface TabProps {
   index: number;
@@ -40,13 +43,14 @@ export const Header = () => {
   const dateTomorrow = setDateForward(1);
   const dateAfterTomorrow = setDateForward(2);
   const dates = [dateNow, dateTomorrow, dateAfterTomorrow];
+
   const datesQuery = [
     getDateISOString(dateNow),
     getDateISOString(dateTomorrow),
     getDateISOString(dateAfterTomorrow),
   ];
 
-  const { data: holidayList }: any = useQuery(IS_HOLIDAY, {
+  const { data: holidayList }: any = useQuery(GET_HOLIDAY_LIST, {
     variables: { dateList: datesQuery },
   });
   const { data: deliveryList }: any = useQuery(GET_DELIVERIES, {

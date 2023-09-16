@@ -9,6 +9,7 @@ export const GET_DELIVERIES = gql`
         title
         details
         price
+        image
         id
       }
     }

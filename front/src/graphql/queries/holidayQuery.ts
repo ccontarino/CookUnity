@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const IS_HOLIDAY = gql`
+export const GET_HOLIDAY_LIST = gql`
   query fetchHolidayList($dateList: [String]!) {
     fetchHolidayList(dateList: $dateList){
       date
